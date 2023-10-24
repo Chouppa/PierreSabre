@@ -5,6 +5,7 @@ public class HistoireTP4 {
 	public static void main(String[] args) {
 		Humain prof = new Humain("Prof", "kombucha", 54);
 		Commercant marco = new Commercant("Marco", 20);
+		Yakuza yakuLeNoir = new Yakuza("Yaku Le Noir", "whisky", 30, "Warsong");
 		
 		prof.direBonjour();
 		prof.acheter("une boisson", 12);
@@ -18,5 +19,11 @@ public class HistoireTP4 {
 		marco.seFaireExtorquer();
 		marco.recevoir(15);
 		marco.boire();
+		
+		System.out.println("");
+		
+		yakuLeNoir.direBonjour();
+		yakuLeNoir.parler("Tiens, tiens, ne serait-ce pas un faible marchand qui passe par là ?");
+		yakuLeNoir.extorquer(marco);
 	}
 }
