@@ -10,6 +10,12 @@ public class Yakuza extends Humain{
 		this.reputation = 4;
 	}
 	
+	@Override
+	public void direBonjour() {
+		parler("Bonjour! Je m'appelle " + nom + " et j'aime boire du " + boisson + ".");
+		parler("Mon clan est celui de " + clan);
+	}
+	
 	public void extorquer(Commercant victime) {
 		int argent;
 		parler(victime.nom + ", si tu tiens à la vie donne moi ta bourse!");
