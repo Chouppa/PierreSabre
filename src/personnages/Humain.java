@@ -4,11 +4,15 @@ public class Humain {
 	protected String nom;
 	protected String boisson;
 	protected int argent;
+	protected Humain[] memoire;
+	protected int nbConnaissance;
 	
 	public Humain(String nom, String boisson, int argent) {
 		this.nom = nom;
 		this.boisson = boisson;
 		this.argent = argent;
+		this.memoire = new Humain[30];
+		this.nbConnaissance = 0;
 	}
 	
 	public String getNom() {
@@ -17,6 +21,10 @@ public class Humain {
 	
 	public int getArgent() {
 		return argent;
+	}
+	
+	public void parler(String texte) {
+		System.out.println("(" + nom + ") - " + texte);
 	}
 	
 	public void direBonjour() {
@@ -36,16 +44,46 @@ public class Humain {
 		}
 	}
 	
-	public void gagnerArgent(int gain) {
+	protected void gagnerArgent(int gain) {
 		argent += gain;
 	}
 	
-	public void perdreArgent(int perte) {
+	protected void perdreArgent(int perte) {
 		argent -= perte;
 	}
 	
-	// On garde "public" devant la méthode "parler" pour pouvoir l'utiliser dans HistoireTP4
-	public void parler(String texte) {
-		System.out.println("(" + nom + ") - " + texte);
+	public void faireConnaissanceAvec(Humain humain) {
+			direBonjour();
+			humain.repondre(this);
+			memoriser(humain);
+	}
+	
+	public void listerConnaissance() {
+		String texte = "Je connais beaucoup de monde dont : " + memoire[0].nom;
+		if (nbConnaissance == 0) {
+			parler("Je ne connais personne pour l'instant.");
+		} else {
+			for (int i=1 ; i<nbConnaissance ; i++) {
+				texte += ", " + memoire[i].nom;
+			}
+			parler(texte);
+		}
+	}
+	
+	private void memoriser(Humain humain) {
+		if (nbConnaissance == memoire.length) {
+			for(int i=1 ; i<nbConnaissance ; i++) {
+				memoire[i-1] = memoire[i];
+			}
+			memoire[nbConnaissance - 1] = humain;
+		} else {
+			memoire[nbConnaissance] = humain;
+			nbConnaissance++;
+		}
+	}
+	
+	private void repondre(Humain humain) {
+		direBonjour();
+		memoriser(humain);
 	}
 }
