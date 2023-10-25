@@ -1,7 +1,7 @@
 package personnages;
 
 public class Samourai extends Ronin {
-	String seigneur;
+	protected String seigneur;
 	
 	public Samourai(String seigneur, String nom, String boisson, int argent) {
 		super(nom, boisson, argent);
